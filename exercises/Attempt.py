@@ -32,20 +32,19 @@ else:
     print("Miss!")
 
 while row_counter <= grid_size:
-    if row_counter != secret_row:
+    if row_counter != int(row_guess):
         print(BLUE_BOX * grid_size)
         row_counter += 1
     else:
-        while column_counter != int(column_guess) and column_counter <= grid_size:
-            the_grid += BLUE_BOX
+        while column_counter <= grid_size:
+            if column_counter != int(column_guess):
+                the_grid += BLUE_BOX
+            elif column_counter == int(column_guess):
+                if int(column_guess) == secret_column and int(row_guess) == secret_row:
+                    the_grid += RED_BOX
+                elif int(column_guess) != secret_column or int(row_guess) != secret_row:
+                    the_grid += WHITE_BOX
             column_counter += 1
-        if column_counter == int(column_guess):
-            if int(column_guess) == secret_column and int(row_guess) == secret_row:
-                the_grid += RED_BOX
-            else:
-                the_grid += WHITE_BOX
-            column_counter += 1
-        
         print(the_grid)
         row_counter += 1
 
